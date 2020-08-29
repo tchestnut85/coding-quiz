@@ -1,35 +1,56 @@
-/* * {
+* {
     box-sizing: border-box
 }
  
 :root {
-    --main-color: rgb(127, 189, 214);
-    --heading-color: rgb(4, 68, 63);
-    --hover-color: rgb(71, 20, 20);
-    --heading-background: rgba(127, 189, 214, 0.5);
+    --main-color: rgb(42, 136, 243);
+    --heading-color: rgb(105, 240, 228);
+    --hover-color: rgb(41, 153, 168);
+    --heading-background: white;
 }
  
 .header {
     background-color: var(--main-color);
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-around;
     text-align: center;
     align-content: center;
-    border: solid 5px;
-    border-radius: 0 0 25px 25px;
+    border: solid 1px;
 }
- 
-.button li:hover {
+
+header a, .header span {
+    color: var(--heading-color);
+    font-weight: lighter;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: var(--heading-background);
+}
+
+.answer-list li:hover {
     background-color: var(--hover-color);
 }
  
-header a {
-    text-decoration: none;
-    color: var(--heading-color);
-    font-weight: bolder;
-    font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 5px;
+.quiz-wrapper h1, p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
-HEADER END */
+
+.button-wrapper {
+    text-align: center;
+    justify-content: center;
+    margin: 50px auto;
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+}
+
+

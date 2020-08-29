@@ -1,23 +1,23 @@
 var timerClock = document.getElementById("timer");
 var quizSection = document.getElementById("quiz");
 var startButton = document.getElementById("button");
-
+var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
 
 var currentQuestion = 0;
-var scoreCounter = 0;
+var scoreCounter = 60;
 
 
 var questions = [ 
     {
-        question: "What color is the sky?", 
-        choices: ["blue", "green", "red", "black"],
-        correct: "answer1"
+        question: "Question 1: What type of data contains text in JavaScript?", 
+        choices: ["integers", "strings", "classes", "script"],
+        correct: "strings"
     },
     {
-        question: "Quetion 2: Write out question in here...", 
-        choices: ["one", "html", "css", "js"],
-        correct: "answer1"
+        question: "Quetion 2: Which of the following should be link CSS styling to HTML elements?", 
+        choices: ["classes", "id", "flexbox", "grid"],
+        correct: "classes"
     },
     {
         question: "Question 3: Write out question in here...", 
@@ -41,7 +41,7 @@ var questions = [
 // TIMER FUNCTION
 // Clicking the Start button begins timer countdown and displays 1 of 5 questions
 function timer() {
-    var remainingTime = 30;
+    var remainingTime = scoreCounter;
 
     var interval = setInterval(function() {
         if (remainingTime > 0) {
@@ -70,15 +70,18 @@ function questionClick() {
     var question = questions[currentQuestion];
     console.log(this);
     if (question.correct === this.textContent) {
-        //increase score
-    } else {
-        // deduct from score
+        var correctAlert = document.createElement("p"); 
+        correctAlert.textContent = "YOU ANSWERED CORRECT! YOU'RE SO SMART!!";
+        quizWrapper.appendChild(correctAlert);
+    } else if {
+        scoreCounter -= 20;
     }
     // 0 1 2 3 4 , when current question = 4
     currentQuestion++ 
     if (currentQuestion === questions.length) {
         // show high score page
     }
+    // remove(correctAlert);
     getQuestion();
 }
 
@@ -87,9 +90,7 @@ function questionClick() {
 
 // save which answer user clicks on and see if equals correct answer
 
-getQuestion();
-
-// startButton.onclick = timer;
+startButton.addEventListener("click", getQuestion);
 startButton.addEventListener("click", timer);
 
 
