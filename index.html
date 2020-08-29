@@ -8,12 +8,20 @@
 </head>
 <body>
     <header class="header">
-        <p class="viewscore"><a href="./score.html">View High Scores</a></p>
-        <p class="timer">Time:</p>
+        <div class="viewscore"><a href="./score.html">View High Scores</a></div>
+        <div>
+            <span>Time Remaining:</span>
+            <span id="timer" class="timer"></span>
+        </div>
     </header>
-    <main class="quiz">
-        <p class="questions">Question Goes Here</p>
-        <ol class="answer-list"></ol>
+    <main id="quiz" class="quiz">
+        <button id="button" class="button">START!</button>
+        <div class="quiz-wrapper">
+            <p class="questions">Question Goes Here</p>
+            <ol class="answer-list"></ol>
+            
+        </div>
+        
     </main>
     <script src="./assets/script.js"></script>
 </body>
