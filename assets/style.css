@@ -10,7 +10,7 @@
     --item-background: rgb(197, 57, 197);
 }
  
-.header, header a, footer, .header span{
+.header, header a,footer, .header span{
     /* background-color: var(--main-color); */
     display: flex;
     flex-wrap: wrap;
@@ -26,6 +26,17 @@
     text-decoration: none;
 }
 
+.userInputLabel {
+    color: rgb(105, 5, 105);
+    font-weight: lighter;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 25px;
+}
+
 header a:hover, footer a:hover {
     color: var(--heading-color);
     font-weight: bold;
@@ -38,9 +49,10 @@ header a:hover, footer a:hover {
 .quiz-wrapper h1 {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    flex-wrap: column, wrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    font-size: 25px;
 }
 
 .quiz-wrapper p {
@@ -66,6 +78,7 @@ header a:hover, footer a:hover {
 .button-wrapper {
     text-align: center;
     justify-content: center;
+    padding: 30px auto;
     margin: 50px auto;
 }
 

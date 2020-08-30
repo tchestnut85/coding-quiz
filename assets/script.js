@@ -2,21 +2,23 @@ var timerClock = document.getElementById("timer");
 var quizArea = document.getElementById("question");
 var startButton = document.getElementById("button");
 var buttonWrap = document.getElementById("button-wrapper");
+var mainContent = document.getElementById("quiz");
 var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
+var header = document.getElementById("header");
+var body = document.getElementById("body");
 var intro = document.getElementById("intro");
 var userInput = document.createElement("div");
 var highScoreContent = document.getElementById("high-scores");
-var initials = document.createElement("li");
+var initialsItem = document.createElement("li");
 var initialsList = document.getElementById("initials-list");
 var scores = document.createElement("li");
 var scoreList = document.getElementById("score-list");
-
 var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
-var userInitials = "";
+var userInitials = localStorage.getItem("name");
 
 var questions = [ 
     {
@@ -90,45 +92,52 @@ function questionClick() {
     if (question.correct === this.textContent) {
         var correctAlert = document.createElement("p"); 
         correctAlert.textContent = "YOU ANSWERED CORRECT!";
+        buttonWrap.innerHTML = "";
         buttonWrap.appendChild(correctAlert);
         setTimeout(function(){correctAlert.textContent = ""}, 1500);
-        currentQuestion++;
-        getQuestion();
     } else if (question.correct < this.textContent || question.correct > this.textContent) {
         var wrongAlert = document.createElement("p");
         wrongAlert.textContent = "YOU ANSWERED WRONG!";
         buttonWrap.appendChild(wrongAlert);
         setTimeout(function(){wrongAlert.textContent = ""}, 1500);
         remainingTime = remainingTime - 20;
-        currentQuestion++;
-        getQuestion();
     } 
+    currentQuestion++;
+    if (currentQuestion === questions.length) {
+        endQuiz();
+    } else {
+        getQuestion();
+    }
 }; 
 
 
 function endQuiz() {
     // need to stop timer
     
-    location.assign("./score.html");
+    clearInterval(interval);
+    mainContent.remove();
 
     // text input for user to write in name or initials
-    userInput.innerHTML = "<label for='userName'>Initials:</label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'></input>"
-    highScoreContent.appendChild("userInput");
-
+    userInput.innerHTML = "<div id='userInputLabel' class='userInputLabel'><label for='userName'>Initials: </label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'></input></div>"
+    body.appendChild(userInput);
+    console.log(userInput);
+    
     localStorage.setItem("initials", userInitials);
     console.log(userInitials);
-    initials.textContent = userInitials;
+    initialsItem.textContent = userInitials;
     initialsList.appendChild(initials);
     
     localStorage.setItem("score", scoreCounter);
     console.log(scoreCounter);
     scores.textContent = scoreCounter;
     scoreList.appendChild(scores);
-
-
+    
+    
     // in case of switching to a single line to display initials/name and score:
     // initials.textContent = userInitials + "has a score of " + scoreCounter;
     // initialsList.appendChild();
+
+    // location.assign("./score.html");
 };
 
 // save which answer user clicks on and see if equals correct answer
