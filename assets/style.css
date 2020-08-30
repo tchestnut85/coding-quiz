@@ -10,7 +10,7 @@
     --item-background: rgb(197, 57, 197);
 }
  
-.header {
+.header, header a, footer, .header span{
     /* background-color: var(--main-color); */
     display: flex;
     flex-wrap: wrap;
@@ -18,9 +18,6 @@
     text-align: center;
     align-content: center;
     /* border: solid 1px; */
-}
-
-header a, .header span {
     color: rgb(105, 5, 105);
     font-weight: lighter;
     font-size: 20px;
@@ -29,7 +26,7 @@ header a, .header span {
     text-decoration: none;
 }
 
-header a:hover {
+header a:hover, footer a:hover {
     color: var(--heading-color);
     font-weight: bold;
 }
@@ -50,6 +47,13 @@ header a:hover {
     flex-wrap: column, wrap;
     justify-content: center;
     align-items: center;
+}
+
+.quiz p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgb(105, 5, 105);
+    font-weight: bold;
 }
 
 .button-wrapper {

@@ -6,9 +6,12 @@ var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
 var intro = document.getElementById("intro");
 
-var scoreCounter = 60;
+// var interval = setInterval();
+var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
+var userInitials = "";
+
 
 
 var questions = [ 
@@ -44,61 +47,80 @@ var questions = [
 // TIMER FUNCTION
 // Clicking the Start button begins timer countdown and displays 1 of 5 questions
 function timer() {
-    var interval = setInterval(function() {
+    interval = setInterval(function() {
         if (remainingTime > 0) {
             timerClock.textContent = remainingTime;
             remainingTime--;
         } else {
-            clearInterval(interval);
-            // show high score page - how to link another html page through a function?
+            timerClock.textContent = "";
+            clearInterval(remainingTime);
         }
     }, 1000);
 };
+
+// function endTimer() {
+//     if (questions[4][i] === onclick)
+//     clearInterval;
+// }
 
 function getQuestion() {
     intro.remove();
     startButton.remove();
     var question = questions[currentQuestion];
-    document.getElementById("question").textContent = question.question;
+    if (document.getElementById("question").textContent = question.question); {
     answerList.innerHTML = "";
+    var lastQuestion = questions[4][1];
+    // console.log(lastQuestion);
     for (var i = 0; i < question.choices.length; i++) {
         var newItem = document.createElement("li");
         newItem.textContent = question.choices[i];
         answerList.appendChild(newItem);
         newItem.addEventListener("click", questionClick)
+        // if (i > 4) {
+        //     endQuiz;
+        // }
     }
-    // if (questions.length > 4) {
-    //     endQuiz();
+    // if (questions.[4][1] === onclick.questions.[4][1]) {
+    //     clearInterval(remainingTime);
     // }
+    // }
+    // if (question > question.choices.length) {
+    //     endQuiz();
+    }
 };
 
 function questionClick() {
     var question = questions[currentQuestion];
-    // console.log(this);
     if (question.correct === this.textContent) {
         var correctAlert = document.createElement("p"); 
-        correctAlert.textContent = "YOU ANSWERED CORRECT! YOU'RE SO SMART!!";
+        correctAlert.textContent = "YOU ANSWERED CORRECT!";
         buttonWrap.appendChild(correctAlert);
-        // test timeout timer to remove correctAlert on line 79
-        // setTimeout(function(){ x.value = "2 seconds" }, 2000);
         currentQuestion++;
-    } else if (question.correct = !this.textContent) {
+        getQuestion();
+    } else if (question.correct < this.textContent || question.correct > this.textContent) {
+        var wrongAlert = document.createElement("p");
+        wrongAlert.textContent = "YOU ANSWERED WRONG!";
+        buttonWrap.appendChild(wrongAlert);
         remainingTime = remainingTime - 20;
         currentQuestion++;
-        // show high score page
-        // remove(correctAlert);
-    } else {
-        currentQuestion++;
-        // currentQuestion === questions.length;
-    }
-    getQuestion();
-    // if (questions.length === 4) {
-    //     endQuiz();
-    // }
-}
+        getQuestion();
+        // Need to figure out how to remove correctAlert and wrongAlert: ;
+    } 
+}; 
 
+function endQuiz() {
+    // need to stop timer
+    clearInterval(remainingTime);
 
+    localStorage.setItem("score", scoreCounter);
+    console.log(scoreCounter);
 
+    // need to create a text input for user to write in name or initials
+    localStorage.setItem("initials", userInitials);
+    console.log(userInitials);
+
+    location.assign("./score.html");
+};
 
 // save which answer user clicks on and see if equals correct answer
 
