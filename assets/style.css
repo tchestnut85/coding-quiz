@@ -53,4 +53,13 @@ header a:hover {
     background-color: var(--hover-color);
 }
 
+.button {
+    background-color: var(--main-color);
+    color: var(--heading-color);
+    font-size: 25px;
+    padding: 15px 15px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 2px black;
+}
+
 
