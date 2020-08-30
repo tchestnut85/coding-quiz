@@ -51,6 +51,10 @@ header a:hover, footer a:hover {
     justify-content: center;
     align-items: center;
 }
+/* 
+.quiz-wrapper ol {
+    align-content: center;
+} */
 
 .quiz p {
     font-family: Arial, Helvetica, sans-serif;

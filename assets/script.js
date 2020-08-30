@@ -5,14 +5,18 @@ var buttonWrap = document.getElementById("button-wrapper");
 var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
 var intro = document.getElementById("intro");
+var userInput = document.createElement("div");
+var highScoreContent = document.getElementById("high-scores");
+var initials = document.createElement("li");
+var initialsList = document.getElementById("initials-list");
+var scores = document.createElement("li");
+var scoreList = document.getElementById("score-list");
 
 var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
 var userInitials = "";
-
-
 
 var questions = [ 
     {
@@ -42,6 +46,7 @@ var questions = [
     }
 ];
 
+var length = questions.length;
 
 
 // TIMER FUNCTION
@@ -55,36 +60,30 @@ function timer() {
     }, 1000);
 };
 
-// function endTimer() {
-//     if (questions[4][i] === onclick)
-//     clearInterval;
-// }
-
 function getQuestion() {
     intro.remove();
     startButton.remove();
     var question = questions[currentQuestion];
+    console.log(question, currentQuestion);
+    
+    // if (question.textContent === undefined) {
+    //     endQuiz();
+    // }
+
     if (document.getElementById("question").textContent = question.question); {
-    answerList.innerHTML = "";
-    var lastQuestion = questions[4][1];
-    // console.log(lastQuestion);
+        answerList.innerHTML = "";
+    
+    
     for (var i = 0; i < question.choices.length; i++) {
         var newItem = document.createElement("li");
         newItem.textContent = question.choices[i];
         answerList.appendChild(newItem);
         newItem.addEventListener("click", questionClick)
-        if ( question.question === undefined) {
-            endQuiz();
-        }
     }
-    // if (questions.[4][1] === onclick.questions.[4][1]) {
-    //     clearInterval(remainingTime);
-    // }
-    // }
-    // if (question > question.choices.length) {
-    //     endQuiz();
-    }
+    
+    }   
 };
+
 
 function questionClick() {
     var question = questions[currentQuestion];
@@ -92,30 +91,44 @@ function questionClick() {
         var correctAlert = document.createElement("p"); 
         correctAlert.textContent = "YOU ANSWERED CORRECT!";
         buttonWrap.appendChild(correctAlert);
+        setTimeout(function(){correctAlert.textContent = ""}, 1500);
         currentQuestion++;
         getQuestion();
     } else if (question.correct < this.textContent || question.correct > this.textContent) {
         var wrongAlert = document.createElement("p");
         wrongAlert.textContent = "YOU ANSWERED WRONG!";
         buttonWrap.appendChild(wrongAlert);
+        setTimeout(function(){wrongAlert.textContent = ""}, 1500);
         remainingTime = remainingTime - 20;
         currentQuestion++;
         getQuestion();
-        // Need to figure out how to remove correctAlert and wrongAlert: ;
     } 
 }; 
 
+
 function endQuiz() {
     // need to stop timer
+    
+    location.assign("./score.html");
 
-    localStorage.setItem("score", scoreCounter);
-    console.log(scoreCounter);
+    // text input for user to write in name or initials
+    userInput.innerHTML = "<label for='userName'>Initials:</label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'></input>"
+    highScoreContent.appendChild("userInput");
 
-    // need to create a text input for user to write in name or initials
     localStorage.setItem("initials", userInitials);
     console.log(userInitials);
+    initials.textContent = userInitials;
+    initialsList.appendChild(initials);
+    
+    localStorage.setItem("score", scoreCounter);
+    console.log(scoreCounter);
+    scores.textContent = scoreCounter;
+    scoreList.appendChild(scores);
 
-    location.assign("./score.html");
+
+    // in case of switching to a single line to display initials/name and score:
+    // initials.textContent = userInitials + "has a score of " + scoreCounter;
+    // initialsList.appendChild();
 };
 
 // save which answer user clicks on and see if equals correct answer
