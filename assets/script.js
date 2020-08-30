@@ -6,7 +6,7 @@ var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
 var intro = document.getElementById("intro");
 
-// var interval = setInterval();
+var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
@@ -51,9 +51,6 @@ function timer() {
         if (remainingTime > 0) {
             timerClock.textContent = remainingTime;
             remainingTime--;
-        } else {
-            timerClock.textContent = "";
-            clearInterval(remainingTime);
         }
     }, 1000);
 };
@@ -76,9 +73,9 @@ function getQuestion() {
         newItem.textContent = question.choices[i];
         answerList.appendChild(newItem);
         newItem.addEventListener("click", questionClick)
-        // if (i > 4) {
-        //     endQuiz;
-        // }
+        if ( question.question === undefined) {
+            endQuiz();
+        }
     }
     // if (questions.[4][1] === onclick.questions.[4][1]) {
     //     clearInterval(remainingTime);
@@ -110,7 +107,6 @@ function questionClick() {
 
 function endQuiz() {
     // need to stop timer
-    clearInterval(remainingTime);
 
     localStorage.setItem("score", scoreCounter);
     console.log(scoreCounter);
