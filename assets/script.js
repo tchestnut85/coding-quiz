@@ -1,6 +1,7 @@
 var timerClock = document.getElementById("timer");
-var quizSection = document.getElementById("quiz");
+var quizArea = document.getElementById("question");
 var startButton = document.getElementById("button");
+var buttonWrap = document.getElementById("button-wrapper");
 var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
 var intro = document.getElementById("intro");
@@ -23,7 +24,7 @@ var questions = [
     },
     {
         question: "Question 3: What file must be in a directory for a website to function?", 
-        choices: ["style.js", "README.md", "index.html", "style.css"],
+        choices: ["script.js", "readme.md", "index.html", "style.css"],
         correct: "index.html"
     },
     {
@@ -33,8 +34,8 @@ var questions = [
     },
     {
         question: "Question 5: The condition in an if/else statement must be enclosed in:", 
-        choices: ["quotes", "curley braces", "parenthesis", "commas"],
-        correct: "parenthesis"
+        choices: ["quotes", "curley braces", "parentheses", "commas"],
+        correct: "parentheses"
     }
 ];
 
@@ -52,10 +53,11 @@ function timer() {
             // show high score page - how to link another html page through a function?
         }
     }, 1000);
-}
+};
 
 function getQuestion() {
     intro.remove();
+    startButton.remove();
     var question = questions[currentQuestion];
     document.getElementById("question").textContent = question.question;
     answerList.innerHTML = "";
@@ -65,7 +67,10 @@ function getQuestion() {
         answerList.appendChild(newItem);
         newItem.addEventListener("click", questionClick)
     }
-}
+    // if (questions.length > 4) {
+    //     endQuiz();
+    // }
+};
 
 function questionClick() {
     var question = questions[currentQuestion];
@@ -73,7 +78,9 @@ function questionClick() {
     if (question.correct === this.textContent) {
         var correctAlert = document.createElement("p"); 
         correctAlert.textContent = "YOU ANSWERED CORRECT! YOU'RE SO SMART!!";
-        quizWrapper.appendChild(correctAlert);
+        buttonWrap.appendChild(correctAlert);
+        // test timeout timer to remove correctAlert on line 79
+        // setTimeout(function(){ x.value = "2 seconds" }, 2000);
         currentQuestion++;
     } else if (question.correct = !this.textContent) {
         remainingTime = remainingTime - 20;
@@ -85,6 +92,9 @@ function questionClick() {
         // currentQuestion === questions.length;
     }
     getQuestion();
+    // if (questions.length === 4) {
+    //     endQuiz();
+    // }
 }
 
 

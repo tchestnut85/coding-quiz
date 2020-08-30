@@ -4,23 +4,24 @@
  
 :root {
     --main-color: rgb(42, 136, 243);
-    --heading-color: rgb(105, 240, 228);
+    --heading-color: rgb(37, 34, 172);
     --hover-color: rgb(41, 153, 168);
     --heading-background: white;
+    --item-background: rgb(197, 57, 197);
 }
  
 .header {
-    background-color: var(--main-color);
+    /* background-color: var(--main-color); */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     text-align: center;
     align-content: center;
-    border: solid 1px;
+    /* border: solid 1px; */
 }
 
 header a, .header span {
-    color: var(--heading-color);
+    color: rgb(105, 5, 105);
     font-weight: lighter;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -29,16 +30,24 @@ header a, .header span {
 }
 
 header a:hover {
-    color: var(--heading-background);
+    color: var(--heading-color);
+    font-weight: bold;
 }
 
-.answer-list li:hover {
-    background-color: var(--hover-color);
-}
- 
-.quiz-wrapper h1, p {
+
+.quiz-wrapper h1 {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: column, wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-wrapper p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: column, wrap;
     justify-content: center;
     align-items: center;
 }
@@ -50,16 +59,53 @@ header a:hover {
 }
 
 .button:hover {
-    background-color: var(--hover-color);
+    background-color: var(--item-background);
+    color: white;
 }
 
 .button {
-    background-color: var(--main-color);
-    color: var(--heading-color);
+    background-color: var(--hover-color);
+    color: black;
     font-size: 25px;
-    padding: 15px 15px;
+    padding: 15px 25px;
+    border: solid 3px;
+    border-color: black;
     border-radius: 15px;
-    box-shadow: 5px 5px 2px black;
 }
 
+.intro {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding: 0 30vw;
+    margin: 20px auto;
+}
 
+.answer-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    background-color: var(--hover-color);
+    border: solid 3px;
+    border-radius: 15px;
+    padding: 20px 20px;
+    margin: 20px 40vw;
+}
+
+.answer-list li:hover {
+    /* border: solid 10px; */
+    border: solid 3px;
+    margin: 10px 40vw;
+    background-color: rgb(197, 57, 197);
+    color: white;
+    border-color: black;
+    border-radius: 15px;
+}
+
+.answer-list {
+    margin: 50px auto;
+    list-style: none;
+}
