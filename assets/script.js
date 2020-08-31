@@ -18,7 +18,8 @@ var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
-var userInitials = localStorage.getItem("name");
+var finalScore = document.getElementById(scores)
+var submitButton = document.getElementById("submitButton");
 
 var questions = [ 
     {
@@ -56,8 +57,8 @@ var length = questions.length;
 function timer() {
     interval = setInterval(function() {
         if (remainingTime > 0) {
-            timerClock.textContent = remainingTime;
             remainingTime--;
+            timerClock.textContent = remainingTime;
         }
     }, 1000);
 };
@@ -110,6 +111,7 @@ function questionClick() {
     }
 }; 
 
+var userInitials = localStorage.getItem("name");
 
 function endQuiz() {
     // need to stop timer
@@ -118,25 +120,27 @@ function endQuiz() {
     mainContent.remove();
 
     // text input for user to write in name or initials
-    userInput.innerHTML = "<div id='userInputLabel' class='userInputLabel'><label for='userName'>Initials: </label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'></input></div>"
+    userInput.innerHTML = "<div id='userInputLabel' class='userInputLabel'><label for='userName'>Initials: </label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'/><input type='submit' class='submitButton' id='submitButton'></div>"
     body.appendChild(userInput);
     console.log(userInput);
     
-    localStorage.setItem("initials", userInitials);
-    console.log(userInitials);
-    initialsItem.textContent = userInitials;
-    initialsList.appendChild(initials);
+    localStorage.setItem("initials", JSON.stringify(userInitials));
     
-    localStorage.setItem("score", scoreCounter);
-    console.log(scoreCounter);
-    scores.textContent = scoreCounter;
-    scoreList.appendChild(scores);
+    initialsItem.textContent = userInitials;
+    body.appendChild(initialsItem);
+    console.log(userInitials);
+    
+    localStorage.setItem("score", JSON.stringify(scoreCounter.value));
+    console.log(finalScore);
+    scores.textContent = finalScore;
+    body.appendChild(scores);
+    
     
     
     // in case of switching to a single line to display initials/name and score:
     // initials.textContent = userInitials + "has a score of " + scoreCounter;
     // initialsList.appendChild();
-
+    
     // location.assign("./score.html");
 };
 
@@ -144,7 +148,7 @@ function endQuiz() {
 
 startButton.addEventListener("click", getQuestion);
 startButton.addEventListener("click", timer);
-
+// submitButton.addEventListener("click", );
 
 // When you answer a question, another questions appears
 

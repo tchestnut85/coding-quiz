@@ -82,7 +82,7 @@ header a:hover, footer a:hover {
     margin: 50px auto;
 }
 
-.button:hover {
+.button:hover, .submitButton:hover {
     background-color: var(--item-background);
     color: white;
 }
@@ -95,6 +95,17 @@ header a:hover, footer a:hover {
     border: solid 3px;
     border-color: black;
     border-radius: 15px;
+}
+
+.submitButton {
+    background-color: var(--hover-color);
+    color: black;
+    font-size: 15px;
+    padding: 10px 15px;
+    border: solid 3px;
+    border-color: black;
+    border-radius: 10px;
+    margin-left: 15px;
 }
 
 .intro {
