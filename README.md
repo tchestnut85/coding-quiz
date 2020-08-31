@@ -8,6 +8,9 @@ This is a Coding Quiz application made using JavaScript, HTML and CSS. The quiz 
 * HTML
 * CSS
 
+### Accessing the Webpage
+https://tchestnut85.github.io/coding-quiz/
+
 ### Screenshots
 Coding Quiz with Start Button to Begin Quiz
 <img src=./assets/images/screenshot-1.JPG/>
