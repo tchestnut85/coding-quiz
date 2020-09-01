@@ -82,6 +82,15 @@ header a:hover, footer a:hover {
     margin: 50px auto;
 }
 
+.answer-response {
+    text-align: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgb(105, 5, 105);
+    font-weight: bold;
+}
+
 .button:hover, .submitButton:hover {
     background-color: var(--item-background);
     color: white;

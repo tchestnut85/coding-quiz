@@ -1,7 +1,9 @@
 var timerClock = document.getElementById("timer");
+var timerClockValue = document.getElementById("timer").value;
 var quizArea = document.getElementById("question");
 var startButton = document.getElementById("button");
 var buttonWrap = document.getElementById("button-wrapper");
+var answerResponse = document.getElementById("answer-response");
 var mainContent = document.getElementById("quiz");
 var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
@@ -18,8 +20,9 @@ var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
-var finalScore = document.getElementById(scores)
+// var finalScore = document.getElementById(scores)
 var submitButton = document.getElementById("submitButton");
+
 
 var questions = [ 
     {
@@ -67,7 +70,7 @@ function getQuestion() {
     intro.remove();
     startButton.remove();
     var question = questions[currentQuestion];
-    console.log(question, currentQuestion);
+    // console.log(question, currentQuestion);
     
     // if (question.textContent === undefined) {
     //     endQuiz();
@@ -88,18 +91,19 @@ function getQuestion() {
 };
 
 
+
 function questionClick() {
     var question = questions[currentQuestion];
     if (question.correct === this.textContent) {
         var correctAlert = document.createElement("p"); 
         correctAlert.textContent = "YOU ANSWERED CORRECT!";
-        buttonWrap.innerHTML = "";
-        buttonWrap.appendChild(correctAlert);
+        // buttonWrap.innerHTML = "";
+        answerResponse.appendChild(correctAlert);
         setTimeout(function(){correctAlert.textContent = ""}, 1500);
     } else if (question.correct < this.textContent || question.correct > this.textContent) {
         var wrongAlert = document.createElement("p");
         wrongAlert.textContent = "YOU ANSWERED WRONG!";
-        buttonWrap.appendChild(wrongAlert);
+        answerResponse.appendChild(wrongAlert);
         setTimeout(function(){wrongAlert.textContent = ""}, 1500);
         remainingTime = remainingTime - 20;
     } 
@@ -111,48 +115,41 @@ function questionClick() {
     }
 }; 
 
-var userInitials = localStorage.getItem("name");
+
+// remove questions and answers - not currently working
+function removeQuiz() {
+    mainContent.remove();
+};
+// function quizTimeout() {
+//     setTimeout(removeQuiz(), 1000);
+// };
 
 function endQuiz() {
-    // need to stop timer
-    
+    // stop timer 
     clearInterval(interval);
-    mainContent.remove();
+    removeQuiz();
 
     // text input for user to write in name or initials
     userInput.innerHTML = "<div id='userInputLabel' class='userInputLabel'><label for='userName'>Initials: </label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'/><input type='submit' class='submitButton' id='submitButton'></div>"
     body.appendChild(userInput);
     console.log(userInput);
     
+    var userInitials = document.querySelector("#name").value;
+
     localStorage.setItem("initials", JSON.stringify(userInitials));
-    
     initialsItem.textContent = userInitials;
     body.appendChild(initialsItem);
     console.log(userInitials);
     
-    localStorage.setItem("score", JSON.stringify(scoreCounter.value));
-    console.log(finalScore);
-    scores.textContent = finalScore;
-    body.appendChild(scores);
+    localStorage.setItem("score", JSON.stringify(timerClockValue));
+    body.appendChild(timerClockValue);
     
-    
-    
-    // in case of switching to a single line to display initials/name and score:
-    // initials.textContent = userInitials + "has a score of " + scoreCounter;
-    // initialsList.appendChild();
-    
-    // location.assign("./score.html");
 };
+
+
 
 // save which answer user clicks on and see if equals correct answer
 
 startButton.addEventListener("click", getQuestion);
 startButton.addEventListener("click", timer);
 // submitButton.addEventListener("click", );
-
-// When you answer a question, another questions appears
-
-// If a question is answered wrong, time is subtracted from the timer
-
-// When timer runs out, you are brought to the high score pag
-// and can save your initials in localStorage
