@@ -131,12 +131,12 @@ function endQuiz() {
 
     // text input for user to write in name or initials
     userInput.innerHTML = "<div id='userInputLabel' class='userInputLabel'><label for='userName'>Initials: </label><input type='text' id='name' name='userName' placeholder='Enter Initials Here'/><input type='submit' class='submitButton' id='submitButton'></div>"
+    localStorage.setItem("initials", JSON.stringify(userInitials));
     body.appendChild(userInput);
     console.log(userInput);
     
     var userInitials = document.querySelector("#name").value;
-
-    localStorage.setItem("initials", JSON.stringify(userInitials));
+    
     initialsItem.textContent = userInitials;
     body.appendChild(initialsItem);
     console.log(userInitials);
@@ -152,4 +152,4 @@ function endQuiz() {
 
 startButton.addEventListener("click", getQuestion);
 startButton.addEventListener("click", timer);
-// submitButton.addEventListener("click", );
+submitButton.addEventListener("click", ???)
