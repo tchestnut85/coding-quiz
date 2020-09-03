@@ -31,17 +31,17 @@ document.getElementById("endScreen").style.display = "none";
 var questions = [
     {
         question: "Question 1: What type of data contains text in JavaScript?",
-        choices: ["integers", "strings", "classes", "script"],
+        choices: ["integers", "strings", "classes", "scrolls"],
         correct: "strings"
     },
     {
         question: "Question 2: Which of the following should link CSS styling to HTML elements?",
-        choices: ["classes", "id", "flexbox", "grid"],
+        choices: ["classes", "hobbits", "flexbox", "grid"],
         correct: "classes"
     },
     {
         question: "Question 3: What file must be in a directory for a website to function?",
-        choices: ["script.js", "readme.md", "index.html", "style.css"],
+        choices: ["script.js", "readme.md", "index.html", "hy.rule"],
         correct: "index.html"
     },
     {
@@ -51,7 +51,7 @@ var questions = [
     },
     {
         question: "Question 5: The condition in an if/else statement must be enclosed in:",
-        choices: ["quotes", "curley braces", "parentheses", "commas"],
+        choices: ["quotes", "curley braces", "parentheses", "octothorps"],
         correct: "parentheses"
     }
 ];
