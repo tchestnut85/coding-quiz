@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./assets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
     <title>CODING QUIZ!</title>
 </head>
 
 <body id="body">
-    
+
     <header id="header" class="header">
         <div class="viewscore"><a id="scoreLink" href="./score.html">View High Scores</a></div>
         <div class="timer-wrapper">
@@ -19,17 +20,30 @@
 
     <main id="quiz" class="quiz">
         <div id="button-wrapper" class="button-wrapper">
-            <button id="button" class="button">START!</button>
+            <button id="startBtn" class="button">START!</button>
         </div>
         <div id="quiz-wrapper" class="quiz-wrapper">
             <h1 id="question" class="question">Coding Quiz Challenge</h1>
-            <p id="intro" class="intro">Try to answer the following code related questions. Incorrect answers will deduct time from the counter. Your remaining time will be saved as your score!</p>
-            <ol id="answer-list" class="answer-list"></ol> 
-        </div>  
+            <p id="intro" class="intro">Try to answer the following code related questions. Incorrect answers will
+                deduct time from the counter. Your remaining time will be saved as your score!</p>
+            <ol id="answer-list" class="answer-list"></ol>
+        </div>
     </main>
     <div id="answer-response" class="answer-response">
     </div>
 
+    <div id="endScreen">
+        <form id='userInputLabel' class='userInputLabel'>
+            <label for='userName'>Name: </label>
+            <input type='text' id='name' name='userName' placeholder='Enter Name Here' />
+            <input type='submit' class='submitButton' id='testingBtn'>
+            <br>
+            <br>
+            <span id="scoreDisplay"></span>
+        </form>
+    </div>
+
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
