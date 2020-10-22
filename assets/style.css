@@ -1,35 +1,155 @@
-/* * {
+* {
     box-sizing: border-box
 }
  
 :root {
-    --main-color: rgb(127, 189, 214);
-    --heading-color: rgb(4, 68, 63);
-    --hover-color: rgb(71, 20, 20);
-    --heading-background: rgba(127, 189, 214, 0.5);
+    --main-color: rgb(42, 136, 243);
+    --heading-color: rgb(37, 34, 172);
+    --hover-color: rgb(41, 153, 168);
+    --heading-background: white;
+    --item-background: rgb(197, 57, 197);
 }
  
-.header {
-    background-color: var(--main-color);
+.header, header a,footer, .header span{
+    /* background-color: var(--main-color); */
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-around;
     text-align: center;
     align-content: center;
-    border: solid 5px;
-    border-radius: 0 0 25px 25px;
-}
- 
-.button li:hover {
-    background-color: var(--hover-color);
-}
- 
-header a {
-    text-decoration: none;
-    color: var(--heading-color);
-    font-weight: bolder;
+    /* border: solid 1px; */
+    color: rgb(105, 5, 105);
+    font-weight: lighter;
     font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 5px;
+    text-decoration: none;
 }
-HEADER END */
+
+.userInputLabel {
+    color: rgb(105, 5, 105);
+    font-weight: lighter;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 25px;
+}
+
+header a:hover, footer a:hover {
+    color: var(--heading-color);
+    font-weight: bold;
+}
+
+/* .timer-wrapper {
+    
+} */
+
+.quiz-wrapper h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.quiz-wrapper p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: column, wrap;
+    justify-content: center;
+    align-items: center;
+}
+/* 
+.quiz-wrapper ol {
+    align-content: center;
+} */
+
+.quiz p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgb(105, 5, 105);
+    font-weight: bold;
+}
+
+.button-wrapper {
+    text-align: center;
+    justify-content: center;
+    padding: 30px auto;
+    margin: 50px auto;
+}
+
+.answer-response {
+    text-align: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgb(105, 5, 105);
+    font-weight: bold;
+}
+
+.button:hover, .submitButton:hover {
+    background-color: var(--item-background);
+    color: white;
+}
+
+.button {
+    background-color: var(--hover-color);
+    color: black;
+    font-size: 25px;
+    padding: 15px 25px;
+    border: solid 3px;
+    border-color: black;
+    border-radius: 15px;
+}
+
+.submitButton {
+    background-color: var(--hover-color);
+    color: black;
+    font-size: 15px;
+    padding: 10px 15px;
+    border: solid 3px;
+    border-color: black;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.intro {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding: 0 30vw;
+    margin: 20px auto;
+}
+
+.answer-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    background-color: var(--hover-color);
+    border: solid 3px;
+    border-radius: 15px;
+    padding: 20px 20px;
+    margin: 20px 40vw;
+}
+
+.answer-list li:hover {
+    /* border: solid 10px; */
+    border: solid 3px;
+    margin: 10px 40vw;
+    background-color: rgb(197, 57, 197);
+    color: white;
+    border-color: black;
+    border-radius: 15px;
+}
+
+.answer-list {
+    margin: 50px auto;
+    list-style: none;
+}

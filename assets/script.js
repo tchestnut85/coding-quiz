@@ -1,102 +1,169 @@
 var timerClock = document.getElementById("timer");
-var quizSection = document.getElementById("quiz");
-var startButton = document.getElementById("button");
-
+var timerClockValue = document.getElementById("timer").value;
+var quizArea = document.getElementById("question");
+var startButton = document.getElementById("startBtn");
+var buttonWrap = document.getElementById("button-wrapper");
+var answerResponse = document.getElementById("answer-response");
+var mainContent = document.getElementById("quiz");
+var quizWrapper = document.getElementById("quiz-wrapper");
 var answerList = document.getElementById("answer-list");
+var header = document.getElementById("header");
+var body = document.getElementById("body");
+var intro = document.getElementById("intro");
+var userInput = document.createElement("div");
+var highScoreContent = document.getElementById("high-scores");
 
+var initialsItem = document.createElement("li");
+var initialsList = document.getElementById("initials-list");
+var userInitials = document.querySelector("#name");
+
+var scores = document.createElement("li");
+var scoreList = document.getElementById("score-list");
+var interval;
+var scoreCounter = 120;
+var remainingTime = scoreCounter;
 var currentQuestion = 0;
-var scoreCounter = 0;
+// var finalScore = document.getElementById(scores)
+var submitButton = document.getElementById("testingBtn");
+document.getElementById("endScreen").style.display = "none";
 
 
-var questions = [ 
+var questions = [
     {
-        question: "What color is the sky?", 
-        choices: ["blue", "green", "red", "black"],
-        correct: "answer1"
+        question: "Question 1: What type of data contains text in JavaScript?",
+        choices: ["integers", "strings", "classes", "scrolls"],
+        correct: "strings"
     },
     {
-        question: "Quetion 2: Write out question in here...", 
-        choices: ["one", "html", "css", "js"],
-        correct: "answer1"
+        question: "Question 2: Which of the following should link CSS styling to HTML elements?",
+        choices: ["classes", "hobbits", "flexbox", "grid"],
+        correct: "classes"
     },
     {
-        question: "Question 3: Write out question in here...", 
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer1"
+        question: "Question 3: What file must be in a directory for a website to function?",
+        choices: ["script.js", "readme.md", "index.html", "hy.rule"],
+        correct: "index.html"
     },
     {
-        question: "Question 4: Write out question in here...", 
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer1"
+        question: "Question 4: Arrays in JavaScript can be used to store:",
+        choices: ["strings", "integers", "other arrays", "all of the above"],
+        correct: "all of the above"
     },
     {
-        question: "Question 5: Write out question in here...", 
-        choices: ["answer1", "answer2", "answer3", "answer4"],
-        correct: "answer1"
+        question: "Question 5: The condition in an if/else statement must be enclosed in:",
+        choices: ["quotes", "curley braces", "parentheses", "octothorps"],
+        correct: "parentheses"
     }
 ];
 
+var length = questions.length;
 
 
 // TIMER FUNCTION
 // Clicking the Start button begins timer countdown and displays 1 of 5 questions
 function timer() {
-    var remainingTime = 30;
-
-    var interval = setInterval(function() {
+    interval = setInterval(function () {
         if (remainingTime > 0) {
-            timerClock.textContent = remainingTime;
             remainingTime--;
-        } else {
-            clearInterval(interval);
-            // show high score page
+            timerClock.textContent = remainingTime;
         }
     }, 1000);
-}
+};
 
 function getQuestion() {
+    intro.remove();
+    startButton.remove();
     var question = questions[currentQuestion];
-    document.getElementById("question").textContent = question.question;
-    answerList.innerHTML = "";
-    for (var i = 0; i < question.choices.length; i++) {
-        var newItem = document.createElement("li");
-        newItem.textContent = question.choices[i];
-        answerList.appendChild(newItem);
-        newItem.addEventListener("click", questionClick)
+    // console.log(question, currentQuestion);
+
+    // if (question.textContent === undefined) {
+    //     endQuiz();
+    // }
+
+    if (document.getElementById("question").textContent = question.question); {
+        answerList.innerHTML = "";
+
+
+        for (var i = 0; i < question.choices.length; i++) {
+            var newItem = document.createElement("li");
+            newItem.textContent = question.choices[i];
+            answerList.appendChild(newItem);
+            newItem.addEventListener("click", questionClick)
+        }
+
     }
-}
+};
+
+
 
 function questionClick() {
     var question = questions[currentQuestion];
-    console.log(this);
     if (question.correct === this.textContent) {
-        //increase score
-    } else {
-        // deduct from score
+        var correctAlert = document.createElement("p");
+        correctAlert.textContent = "YOU ANSWERED CORRECT!";
+        // buttonWrap.innerHTML = "";
+        answerResponse.appendChild(correctAlert);
+        setTimeout(function () { correctAlert.textContent = "" }, 1500);
+    } else if (question.correct < this.textContent || question.correct > this.textContent) {
+        var wrongAlert = document.createElement("p");
+        wrongAlert.textContent = "YOU ANSWERED WRONG!";
+        answerResponse.appendChild(wrongAlert);
+        setTimeout(function () { wrongAlert.textContent = "" }, 1500);
+        remainingTime = remainingTime - 20;
     }
-    // 0 1 2 3 4 , when current question = 4
-    currentQuestion++ 
+    currentQuestion++;
     if (currentQuestion === questions.length) {
-        // show high score page
+        endQuiz();
+    } else {
+        getQuestion();
     }
-    getQuestion();
-}
+};
 
 
+// remove questions and answers - not currently working
+function removeQuiz() {
+    mainContent.remove();
+};
+// function quizTimeout() {
+//     setTimeout(removeQuiz(), 1000);
+// };
 
+function endQuiz() {
+    userInput.innerHTML = ""
+    document.getElementById("endScreen").style.display = "block";
+    if (remainingTime >= 50) {
+    document.getElementById("scoreDisplay").innerHTML = "Your Score: " + remainingTime + "! Good job!"
+    } else {
+        document.getElementById("scoreDisplay").innerHTML = "Your Score: " + remainingTime + "... try again!"
+    };
+    clearInterval(interval);
+    removeQuiz();
+  
+   
 
-// save which answer user clicks on and see if equals correct answer
+    if(submitButton){
+        submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            // text input for user to write in name or initials
+           // localStorage.setItem("initials", JSON.stringify(userInitials));
+            alert("Your name and score have been saved!");
+            var userInitialsValue = userInitials.value;
+            if (localStorage.getItem("totalScore")){
+                var savedScores = localStorage.getItem("totalScore");
+                var listOfScores = JSON.parse(savedScores);
+                // NEED TO FIGURE OUT CORRECT VALUE TO USE FOR SCORE
+                listOfScores.push([userInitialsValue, remainingTime]);
+                
+                localStorage.setItem("totalScore", JSON.stringify(listOfScores));
+            } else {
+                var listOfScores = [];
+                listOfScores.push([userInitialsValue, remainingTime])
+            
+                localStorage.setItem("totalScore", JSON.stringify(listOfScores));
+            }
+        });
+      }
+};
 
-getQuestion();
-
-// startButton.onclick = timer;
+startButton.addEventListener("click", getQuestion);
 startButton.addEventListener("click", timer);
-
-
-// When you answer a question, another questions appears
-
-// If a question is answered wrong, time is subtracted from the timer
-
-// When timer runs out, you are brought to the high score pag
-// and can save your initials in localStorae
-
