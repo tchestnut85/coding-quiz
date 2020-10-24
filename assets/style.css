@@ -153,3 +153,17 @@ header a:hover, footer a:hover {
     margin: 50px auto;
     list-style: none;
 }
+
+.high-scores {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.name-display {
+
+}
+
+.score-display {
+
+}
