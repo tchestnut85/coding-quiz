@@ -23,7 +23,6 @@ var interval;
 var scoreCounter = 120;
 var remainingTime = scoreCounter;
 var currentQuestion = 0;
-// var finalScore = document.getElementById(scores)
 var submitButton = document.getElementById("testingBtn");
 document.getElementById("endScreen").style.display = "none";
 
@@ -70,6 +69,7 @@ function timer() {
     }, 1000);
 };
 
+// function to display each question
 function getQuestion() {
     intro.remove();
     startButton.remove();
@@ -87,12 +87,12 @@ function getQuestion() {
     }
 };
 
+// function to remove time from timer if wrong answer selected
 function questionClick() {
     var question = questions[currentQuestion];
     if (question.correct === this.textContent) {
         var correctAlert = document.createElement("p");
         correctAlert.textContent = "YOU ANSWERED CORRECT!";
-        // buttonWrap.innerHTML = "";
         answerResponse.appendChild(correctAlert);
         setTimeout(function () { correctAlert.textContent = ""; }, 1500);
     } else if (question.correct < this.textContent || question.correct > this.textContent) {
@@ -110,10 +110,12 @@ function questionClick() {
     }
 };
 
+// remove quiz after answering all questions
 function removeQuiz() {
     mainContent.remove();
 };
 
+// end the quiz and save name and score
 function endQuiz() {
     userInput.innerHTML = "";
     document.getElementById("endScreen").style.display = "block";
@@ -128,14 +130,12 @@ function endQuiz() {
     if (submitButton) {
         submitButton.addEventListener("click", function (e) {
             e.preventDefault();
-            // text input for user to write in name or initials
-            // localStorage.setItem("initials", JSON.stringify(userInitials));
             alert("Your name and score have been saved!");
             var userInitialsValue = userInitials.value;
             if (localStorage.getItem("totalScore")) {
                 var savedScores = localStorage.getItem("totalScore");
                 var listOfScores = JSON.parse(savedScores);
-                // NEED TO FIGURE OUT CORRECT VALUE TO USE FOR SCORE
+
                 listOfScores.push({ name: userInitialsValue, score: remainingTime });
 
                 localStorage.setItem("totalScore", JSON.stringify(listOfScores));
