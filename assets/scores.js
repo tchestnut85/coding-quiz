@@ -20,7 +20,7 @@ displayScores = () => {
         row.appendChild(nameEl);
 
         let scoreEl = document.createElement('td');
-        // nameEl.className = 'name-el';
+        scoreEl.className = 'score-el';
         scoreEl.innerHTML = `<span>${score.score}</span>`;
         row.appendChild(scoreEl);
     }

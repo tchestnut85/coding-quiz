@@ -154,16 +154,31 @@ header a:hover, footer a:hover {
     list-style: none;
 }
 
+.table-head {
+    text-align: center;
+    align-items: center;
+    /* border: solid black 2px; */
+}
+
 .high-scores {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-content: center;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
 }
 
-.name-display {
-
+.name-el {
+    /* display: flex; */
+    justify-content: center;
+    border: solid black 1px;
+    padding: 0 2em;
 }
 
-.score-display {
-
+.score-el {
+    /* display: flex; */
+    justify-content: center;
+    border: solid black 1px;
+    padding: 0 2em;
 }
